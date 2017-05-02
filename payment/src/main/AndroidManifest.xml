@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="uz.paycom.payment">
+
+  <uses-permission android:name="android.permission.INTERNET" />
+
+  <application>
+    <activity android:name=".PaymentActivity" android:theme="@style/PaycomAppTheme" />
+    <activity android:name=".ConfirmActivity" android:theme="@style/PaycomAppTheme"/>
+  </application>
+
+</manifest>

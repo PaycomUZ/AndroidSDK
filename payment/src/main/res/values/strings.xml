@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Paycom</string>
+    <string name="paymentSum">Сумма к оплате</string>
+    <string name="cardNumber">Номер карты</string>
+    <string name="uzcardOnly">Только карты Uzcard Online</string>
+    <string name="dateExpire">Срок истечения</string>
+    <string name="cardRemember">Запомнить карту</string>
+    <string name="continueText">Продолжить</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="codeSent">КОД ПОДТВЕРЖДЕНИЯ ВЫСЛАН НА НОМЕР</string>
+    <string name="codeConfirm">КОД ПОДТВЕРЖДЕНИЯ</string>
+    <string name="error">Ошибка</string>
+    <string name="close">Закрыть</string>
+    <string name="tryAgainMessage">Произошла ошибка, попробуйте еще раз</string>
+    <string name="cardNumberHint">xxxx xxxx xxxx xxxx</string>
+    <string name="dateExpireHint">мм/гг</string>
+    <string name="paycomTitle">Paycom Оплата</string>
+    <string name="invalidCard">Неправильный номер карты</string>
+</resources>

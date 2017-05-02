@@ -1,0 +1,48 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+
+bintray {
+  user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+  key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+  configurations = ['archives']
+  pkg {
+    repo = 'general'
+    name = 'android-payment-sdk'
+    userOrg = user
+    licenses = ['Apache-2.0']
+    vcsUrl = 'https://github.com/paycom/coming-soon.git'
+    version {
+      name = '1.0'
+      desc = 'Paycom android sdk 1.0 RC'
+      vcsTag = '1.0'
+    }
+  }
+}
+
+android {
+  defaultConfig {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    minSdkVersion 14
+    versionCode 1
+    versionName "1.0"
+    buildConfigField "String", "API_ENDPOINT", '"http://checkout.test.paycom.uz/api"'
+  }
+  buildTypes {
+    debug {
+      debuggable true
+    }
+    release {
+      consumerProguardFiles 'proguard-payment.pro'
+    }
+  }
+  publishNonDefault true
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_7
+    targetCompatibility JavaVersion.VERSION_1_7
+  }
+}
+
+dependencies {
+  compile 'com.android.support:appcompat-v7:+'
+}
