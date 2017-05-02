@@ -1,19 +1,19 @@
 <resources>
     <string name="app_name">Paycom</string>
-    <string name = "paymentSum">To\'lov miqdori</string>
-    <string name = "cardNumber">Card soni</string>
-    <string name = "uzcardOnly">Uzcard Online karta faqat</string>
-    <string name = "dateExpire">Ro\'yxatdan o\'tilganlik sanasi:</string>
-    <string name = "cardRemember">xaritasini eslab</string>
-    <string name = "continueText">Davom</string>
-    <string name = "confirm">tasdiqlang</string>
-    <string name = "codeSent">raqamingizni yuborilgan tasdiq kodi</string>
-    <string name = "codeConfirm">tasdiqlash kodi</string>
+    <string name = "paymentSum">To`lov so`mmasi</string>
+    <string name = "cardNumber">Kartaning raqami</string>
+    <string name = "uzcardOnly">Faqat Uzcard Online kartalari</string>
+    <string name = "dateExpire">Amal qilish muddati:</string>
+    <string name = "cardRemember">Kartani saqlab qo`yin</string>
+    <string name = "continueText">Oldinga</string>
+    <string name = "confirm">Tasdiqlash</string>
+    <string name = "codeSent">TASDIQLASH KODI QUYIDAGI RAQAMGA JUNATILDI</string>
+    <string name = "codeConfirm">Tekshiruv kodi</string>
     <string name = "error">Xato</string>
-    <string name = "close">Yaqin</string>
-    <string name = "tryAgainMessage">bir xato yuz berdi, yana urinib ko\'ring</string>
+    <string name = "close">Yopish</string>
+    <string name = "tryAgainMessage">Xatolik yuz berdi, qaytadan urinib ko`ring</string>
     <string name = "cardNumberHint">xxxx xxxx xxxx xxxx</string>
-    <string name = "dateExpireHint">mm/asr</string>
-    <string name = "paycomTitle">Paycom To\'lov</string>
-  <string name="invalidCard">Noto\'g\'ri karta raqami</string>
+    <string name = "dateExpireHint">mm/yy</string>
+    <string name = "paycomTitle">Paycom To`lov</string>
+  <string name="invalidCard">Karta raqami noto`g`ri`kiritildi</string>
 </resources>
