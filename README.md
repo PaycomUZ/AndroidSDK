@@ -19,7 +19,7 @@ allprojects {
 2. Добавте в app build.gradle:
 ...
 dependencies {
-   releaseCompile('uz.paycom:payment:1.0:release@aar')
+   releaseCompile('uz.paycom:payment:1.0.3:release@aar')
    //Для тестирования интеграции на тестовой площадке
    //debugCompile('uz.paycom:payment:1.0.3:debug@aar') 
 }
