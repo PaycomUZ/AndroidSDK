@@ -1,11 +1,11 @@
-# Payme Android SDK (https://payme.uz)
-===================
+# Paycom Android SDK
 
-Данную библиотеку можно использовать для внедрения оплаты Payme в ваше мобильное приложение.
-Для подключения библиотеки проделайте следующие действия:
+Paycom Android SDK — это библиотека для интеграции [Paycom](http://paycom.uz/) c вашим мобильным приложением. 
+
+## Подключение библиотеки к мобильному приложению
 
 1. Добавьте в project build.gradle:
-...
+```
 allprojects {
   repositories {
     jcenter()
@@ -14,32 +14,34 @@ allprojects {
     }
   }
 }
-...
+```
+2. Добавьте в app build.gradle:
 
-2. Добавте в app build.gradle:
-...
+```
 dependencies {
-   releaseCompile('uz.paycom:payment:1.0.3:release@aar')
-   //Для тестирования интеграции на тестовой площадке
-   //debugCompile('uz.paycom:payment:1.0.3:debug@aar') 
+   compile 'uz.paycom:payment:1.0.4'
 }
-...
+```
 
-3. Далее, вызов на оплату:
-...
+3. Встройте в приложение вызов на оплату:
+```
 @Override public void onClick(View v) {
         Intent intent = new Intent(YourActivity.this, PaymentActivity.class);
-        intent.putExtra(EXTRA_ID, xAuth); //ID мерчанта
+        intent.putExtra(EXTRA_ID, xAuth); //Ваш ID мерчанта
         final Double sum = Double.valueOf(activityTestSum.getText().toString());
         intent.putExtra(EXTRA_AMOUNT, sum); //Сумма оплаты
         intent.putExtra(EXTRA_SAVE, activityTestMultiple.isChecked()); //Сохранить для многократной оплаты?
         intent.putExtra(EXTRA_LANG, "RU"); //Язык "RU" или "UZ"
         startActivityForResult(intent, 0);
 }
-...
+```
 
-4. Получаем результат:
-...
+## Обработка результата
+
+После вызова оплаты: покупатель вводит данные платежа, Paycom SDK — возвращает токен для совершения платежа. Токен передаётся в backend мобильного приложения. 
+
+**Пример**
+```
 @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
@@ -50,8 +52,22 @@ dependencies {
       Log.d(TAG, "Payment canceled"); //Произошла отмена оплаты
     }
   }
-...
+```
 
-где, Result - {number - номер карты маскированный, expire - срок действия, token - токен необходимый для списания оплаты (передается на backend приложения), recurent - возможно ли произвести повторное списание, verify - прошла ли проверка на принадлежность карты владельцу по sms
+**Result** содержит поля:
 
-5. Готово. Побробности: http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-plastikovymi-kartami-klientskaya-chast
+- number — маскированный номер карты;
+
+- expire — срок действия карты; 
+
+- token — токен для совершения платежа. Токен передаётся в backend мобильного приложения;
+
+- recurrent — флаг, возможность повторного списания;
+
+- verify — результат проверки на принадлежность карты. Проверка производится по смс.
+
+[Побробности](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-plastikovymi-kartami-klientskaya-chast)
+
+## Как выглядит
+
+![Screenshot](docs/img.png?raw=true "Screens")
