@@ -3,7 +3,7 @@
     <string name = "paymentSum">To`lov so`mmasi</string>
     <string name = "cardNumber">Kartaning raqami</string>
     <string name = "uzcardOnly">Faqat Uzcard Online kartalari</string>
-    <string name = "dateExpire">Amal qilish muddati:</string>
+    <string name = "dateExpire">Kartaning amal qilish muddati</string>
     <string name = "cardRemember">Kartani saqlab qo`yin</string>
     <string name = "continueText">Oldinga</string>
     <string name = "confirm">Tasdiqlash</string>
@@ -16,4 +16,5 @@
     <string name = "dateExpireHint">mm/yy</string>
     <string name = "paycomTitle">Paycom To`lov</string>
   <string name="invalidCard">Karta raqami noto`g`ri`kiritildi</string>
+    <string name="card_balance_currency">so`m</string>
 </resources>

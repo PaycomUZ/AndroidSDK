@@ -9,41 +9,20 @@ android {
     targetSdkVersion project.ext.targetSdkVersion
     versionCode 1
     versionName "1.0"
-    jackOptions {
-      enabled true
-    }
-  }
-  signingConfigs {
-    release {
-      storeFile file("signkey.jks")
-      storePassword "ei5TarXy"
-      keyAlias "key"
-      keyPassword "ei5TarXy"
-    }
   }
   buildTypes {
     debug {
       debuggable true
     }
     release {
-      minifyEnabled true
-      signingConfig signingConfigs.release
+      minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
-  }
-  dexOptions {
-    javaMaxHeapSize "2048M"
-  }
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
   }
 }
 
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
 
-  //This is android library project builds as aar library
-  debugCompile project(path: ':payment', configuration: 'debug')
-  releaseCompile project(path: ':payment', configuration: 'release')
+  compile project(":payment");
 }

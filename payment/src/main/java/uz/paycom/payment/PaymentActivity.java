@@ -20,6 +20,7 @@ import uz.paycom.payment.api.task.VerifyCardTask;
 import uz.paycom.payment.utils.CardNumberFormat;
 import uz.paycom.payment.utils.DateExpireFormat;
 import uz.paycom.payment.utils.LocaleHelper;
+import uz.paycom.payment.utils.PaycomSandBox;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -54,7 +55,7 @@ public class PaymentActivity extends AppCompatActivity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.paycom_payment_main);
 
     activityMainErrorLayout = (RelativeLayout) findViewById(R.id.activity_main_errorLayout);
     activityMainErrorLayoutError = (TextView) findViewById(R.id.activity_main_errorLayout_error);
@@ -82,7 +83,7 @@ public class PaymentActivity extends AppCompatActivity {
       @Override
       public void onClick(View v) {
         String number = activityMainCardNumber.getText().toString().replace(" ", "");
-        if (!isOnline(number)) {
+        if (!isOnline(number) && !PaycomSandBox.isSandBox()) {
           showError(getString(R.string.uzcardOnly));
           return;
         }
@@ -117,6 +118,7 @@ public class PaymentActivity extends AppCompatActivity {
     activityMainDateExpireTitle.setText(resources.getString(R.string.dateExpire));
     activityMainDateExpire.setHint(resources.getString(R.string.dateExpireHint));
     activityMainContinue.setText(resources.getString(R.string.continueText));
+    activityMainCardRemember.setText(resources.getString(R.string.cardRemember));
 
     id = getIntent().getStringExtra(EXTRA_ID);
     amount = getIntent().getDoubleExtra(EXTRA_AMOUNT, 0.00);
@@ -124,7 +126,8 @@ public class PaymentActivity extends AppCompatActivity {
     amount = Math.floor(amount * 100.0) / 100.0;
     save = getIntent().getBooleanExtra(EXTRA_SAVE, false);
     if (amount <= 0) {setResult(RESULT_CANCELED); finish();}
-    activityMainPaymentSum.setText(formatMoney(amount, true));
+    activityMainPaymentSum.setText(formatMoney(amount, true) +
+        " " + resources.getString(R.string.card_balance_currency));
     activityMainCardRemember.setVisibility(save ? View.VISIBLE : View.GONE);
   }
 

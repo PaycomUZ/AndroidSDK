@@ -5,25 +5,28 @@ apply plugin: 'com.github.dcendents.android-maven'
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
+ext {
+  ver = "1.0.4"
+}
+
 android {
   defaultConfig {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     minSdkVersion 14
     versionCode 1
-    versionName "1.0"
+    versionName ver
   }
   buildTypes {
     debug {
       debuggable true
-      buildConfigField "String", "API_ENDPOINT", '"http://checkout.test.paycom.uz/api"'
     }
     release {
+      minifyEnabled false
       consumerProguardFiles 'proguard-payment.pro'
-      buildConfigField "String", "API_ENDPOINT", '"http://checkout.paycom.uz/api"'
     }
   }
-  publishNonDefault true
+  publishNonDefault false
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_7
     targetCompatibility JavaVersion.VERSION_1_7
@@ -36,7 +39,7 @@ dependencies {
 }
 
 group = 'uz.paycom'
-version = '1.0'
+version = ver
 
 bintray {
   user = properties.getProperty("bintray.user")
@@ -49,9 +52,29 @@ bintray {
     licenses = ['Apache-2.0']
     vcsUrl = 'https://github.com/PaycomUZ/AndroidSDK.git'
     version {
-      name = '1.0'
-      desc = 'Payme android sdk'
-      vcsTag = '1.0'
+      name = ver
+      desc = 'Paycom android sdk'
+      vcsTag = ver
     }
   }
+}
+
+task sourcesJar(type: Jar) {
+  from android.sourceSets.main.java.srcDirs
+  classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+  source = android.sourceSets.main.java.srcDirs
+  classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  from javadoc.destinationDir
+}
+
+artifacts {
+  archives javadocJar
+  archives sourcesJar
 }

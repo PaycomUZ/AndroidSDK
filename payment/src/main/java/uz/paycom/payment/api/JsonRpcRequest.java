@@ -12,7 +12,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import uz.paycom.payment.BuildConfig;
+import uz.paycom.payment.utils.PaycomSandBox;
 
 public class JsonRpcRequest {
 
@@ -31,7 +31,9 @@ public class JsonRpcRequest {
 
   private String callApi(JSONObject jsonObject) {
     try {
-      URL url = new URL(BuildConfig.API_ENDPOINT);
+      String urlApi = PaycomSandBox.isSandBox() ? "http://checkout.test.paycom.uz/api"
+          : "http://checkout.paycom.uz/api";
+      URL url = new URL(urlApi);
       urlConnection = (HttpURLConnection) url.openConnection();
       urlConnection.setRequestMethod("POST");
       urlConnection.addRequestProperty("X-Auth", xAuth);

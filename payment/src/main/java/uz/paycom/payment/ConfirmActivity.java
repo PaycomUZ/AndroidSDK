@@ -9,6 +9,7 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -47,7 +48,9 @@ public class ConfirmActivity extends AppCompatActivity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_confirm);
+    setContentView(R.layout.paycom_payment_confirm);
+
+    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
     activityConfirmErrorLayout = (RelativeLayout) findViewById(R.id.activity_confirm_errorLayout);
     activityConfirmError = (TextView) findViewById(R.id.activity_confirm_error);

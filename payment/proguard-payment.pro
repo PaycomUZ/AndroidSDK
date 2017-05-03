@@ -4,6 +4,10 @@
     public static <fields>;
 }
 
+-keepclassmembernames public uz.paycom.payment.utils.PaycomSandBox {
+    public static <fields>;
+}
+
 -keepparameternames
 -renamesourcefileattribute SourceFile
 -keepattributes Exceptions,InnerClasses,Signature,Deprecated, SourceFile,LineNumberTable,*Annotation*,EnclosingMethod

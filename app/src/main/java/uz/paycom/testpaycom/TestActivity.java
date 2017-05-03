@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
 import uz.paycom.payment.PaymentActivity;
 import uz.paycom.payment.model.Result;
+import uz.paycom.payment.utils.PaycomSandBox;
 
 import static uz.paycom.payment.PaymentActivity.EXTRA_AMOUNT;
 import static uz.paycom.payment.PaymentActivity.EXTRA_ID;
@@ -34,15 +36,19 @@ public class TestActivity extends AppCompatActivity {
     activityTestMultiple = (CheckBox) findViewById(R.id.activity_test_multiple);
     activityTestPayment = (Button) findViewById(R.id.activity_test_payment);
 
-    activityTestPayment.setOnClickListener(v -> {
-      Intent intent = new Intent(TestActivity.this, PaymentActivity.class);
-      intent.putExtra(EXTRA_ID, xAuth);
-      //Если чисел после запятой больше 2-ух, то они будут отброшены
-      final Double sum = Double.valueOf(activityTestSum.getText().toString());
-      intent.putExtra(EXTRA_AMOUNT, sum);
-      intent.putExtra(EXTRA_SAVE, activityTestMultiple.isChecked());
-      intent.putExtra(EXTRA_LANG, "UZ");
-      startActivityForResult(intent, 0);
+    activityTestPayment.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(TestActivity.this, PaymentActivity.class);
+        intent.putExtra(EXTRA_ID, xAuth);
+        //Если чисел после запятой больше 2-ух, то они будут отброшены
+        final Double sum = Double.valueOf(activityTestSum.getText().toString());
+        intent.putExtra(EXTRA_AMOUNT, sum);
+        intent.putExtra(EXTRA_SAVE, activityTestMultiple.isChecked());
+        intent.putExtra(EXTRA_LANG, "RU");
+        PaycomSandBox.setEnabled(true);
+        startActivityForResult(intent, 0);
+      }
     });
   }
 

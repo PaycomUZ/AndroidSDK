@@ -1,2 +1,1 @@
 include ':app', ':payment'
-rootProject.name = 'android-sdk'
