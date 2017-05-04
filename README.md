@@ -6,23 +6,23 @@ Paycom Android SDK — это библиотека для интеграции [
 
 1. Добавьте в app build.gradle:
 
-```
+```java
 dependencies {
    compile 'uz.paycom:payment:1.0.4'
 }
 ```
 
 2. Встройте в приложение вызов на оплату:
-```
+```java
 @Override public void onClick(View v) {
-        Intent intent = new Intent(YourActivity.this, PaymentActivity.class);
-        intent.putExtra(EXTRA_ID, xAuth); //Ваш ID мерчанта
-        final Double sum = Double.valueOf(activityTestSum.getText().toString());
-        intent.putExtra(EXTRA_AMOUNT, sum); //Сумма оплаты
-        intent.putExtra(EXTRA_SAVE, activityTestMultiple.isChecked()); //Сохранить для многократной оплаты?
-        intent.putExtra(EXTRA_LANG, "RU"); //Язык "RU" или "UZ"
-        PaycomSandBox.setEnabled(true); //true для тестовой площадки, по умолчанию false
-        startActivityForResult(intent, 0);
+   Intent intent = new Intent(YourActivity.this, PaymentActivity.class);
+   intent.putExtra(EXTRA_ID, xAuth); //Ваш ID мерчанта
+   final Double sum = Double.valueOf(activityTestSum.getText().toString());
+   intent.putExtra(EXTRA_AMOUNT, sum); //Сумма оплаты
+   intent.putExtra(EXTRA_SAVE, activityTestMultiple.isChecked()); //Сохранить для многократной оплаты?
+   intent.putExtra(EXTRA_LANG, "RU"); //Язык "RU" или "UZ"
+   PaycomSandBox.setEnabled(true); //true для тестовой площадки, по умолчанию false
+   startActivityForResult(intent, 0);
 }
 ```
 
@@ -31,7 +31,7 @@ dependencies {
 После вызова оплаты: покупатель вводит данные платежа, Paycom SDK — возвращает токен для совершения платежа. Токен передаётся в backend мобильного приложения. 
 
 **Пример**
-```
+```java
 @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
