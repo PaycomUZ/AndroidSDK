@@ -4,18 +4,7 @@ Paycom Android SDK — это библиотека для интеграции [
 
 ## Подключение библиотеки к мобильному приложению
 
-1. Добавьте в project build.gradle:
-```
-allprojects {
-  repositories {
-    jcenter()
-    maven {
-      url  "http://dl.bintray.com/paycom/general"
-    }
-  }
-}
-```
-2. Добавьте в app build.gradle:
+1. Добавьте в app build.gradle:
 
 ```
 dependencies {
@@ -23,7 +12,7 @@ dependencies {
 }
 ```
 
-3. Встройте в приложение вызов на оплату:
+2. Встройте в приложение вызов на оплату:
 ```
 @Override public void onClick(View v) {
         Intent intent = new Intent(YourActivity.this, PaymentActivity.class);
@@ -32,6 +21,7 @@ dependencies {
         intent.putExtra(EXTRA_AMOUNT, sum); //Сумма оплаты
         intent.putExtra(EXTRA_SAVE, activityTestMultiple.isChecked()); //Сохранить для многократной оплаты?
         intent.putExtra(EXTRA_LANG, "RU"); //Язык "RU" или "UZ"
+        PaycomSandBox.setEnabled(true); //true для тестовой площадки, по умолчанию false
         startActivityForResult(intent, 0);
 }
 ```
