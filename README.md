@@ -1,8 +1,10 @@
 # Paycom Android SDK
 
-Paycom Android SDK — это библиотека для интеграции [Paycom](http://paycom.uz/) c вашим мобильным приложением. 
+Чтобы интегрировать Paycom с мобильным приложением, подключите к мобильному приложению [библиотеку Paycom Android SDK](https://github.com/PaycomUZ/AndroidSDK) и реализуйте методы работы с [пластиковыми картами](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-plastikovymi-kartami-servernaya-chast) и [чеком](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-chekom-servernaya-chast) из [Subscribe API](http://paycom.uz/api/#subscribe-api).
 
-## Подключение библиотеки к мобильному приложению
+В библиотеке Paycom Android SDK — реализован пользовательский интерфейс и все [методы работы с пластиковыми картами для клиентской части](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-plastikovymi-kartami-klientskaya-chast). 
+
+## Подключение библиотеки
 
 1. Добавьте в app build.gradle:
 
@@ -54,10 +56,9 @@ dependencies {
 
 - recurrent — флаг, возможность повторного списания;
 
-- verify — результат проверки на принадлежность карты. Проверка производится по смс.
+- verify — верификация карты по смс.
 
-[Подробности](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-plastikovymi-kartami-klientskaya-chast)
 
-## Как выглядит
+## Пользовательский интерфейс
 
 ![Screenshot](docs/img.png?raw=true "Screens")
