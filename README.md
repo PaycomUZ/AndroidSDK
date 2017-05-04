@@ -56,7 +56,7 @@ dependencies {
 
 - verify — результат проверки на принадлежность карты. Проверка производится по смс.
 
-[Побробности](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-plastikovymi-kartami-klientskaya-chast)
+[Подробности](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-plastikovymi-kartami-klientskaya-chast)
 
 ## Как выглядит
 
