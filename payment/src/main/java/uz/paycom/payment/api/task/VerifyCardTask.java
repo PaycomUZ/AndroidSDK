@@ -35,7 +35,7 @@ public class VerifyCardTask extends AsyncTask<Void, Void, String> {
     PaymentActivity activity = weakActivity.get();
     if (activity != null) {
       id = activity.id;
-      amount = activity.amount;
+      amount = activity.amount * 100; //Amount in teens
       number = activity.activityMainCardNumber.getText().toString().replace(" ", "");
       expire = activity.activityMainDateExpire.getText().toString().replace("/", "");
       save = activity.activityMainCardRemember.isChecked();

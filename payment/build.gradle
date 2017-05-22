@@ -6,7 +6,7 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 ext {
-  ver = "1.0.4"
+  ver = "1.0.5"
 }
 
 android {
