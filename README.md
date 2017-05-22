@@ -10,7 +10,7 @@
 
 ```java
 dependencies {
-   compile 'uz.paycom:payment:1.0.4'
+   compile 'uz.paycom:payment:1.0.5'
 }
 ```
 
