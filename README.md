@@ -1,45 +1,39 @@
-# Payme Android SDK (https://payme.uz)
-===================
+# Paycom Android SDK
 
-Данную библиотеку можно использовать для внедрения оплаты Payme в ваше мобильное приложение.
-Для подключения библиотеки проделайте следующие действия:
+Чтобы интегрировать Paycom с мобильным приложением, подключите к мобильному приложению [библиотеку Paycom Android SDK](https://github.com/PaycomUZ/AndroidSDK) и реализуйте методы работы с [пластиковыми картами](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-plastikovymi-kartami-servernaya-chast) и [чеком](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-chekom-servernaya-chast) из [Subscribe API](http://paycom.uz/api/#subscribe-api).
 
-1. Добавьте в project build.gradle:
-...
-allprojects {
-  repositories {
-    jcenter()
-    maven {
-      url  "http://dl.bintray.com/paycom/general"
-    }
-  }
-}
-...
+В библиотеке Paycom Android SDK — реализован пользовательский интерфейс и все [методы работы с пластиковыми картами для клиентской части](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-plastikovymi-kartami-klientskaya-chast). 
 
-2. Добавте в app build.gradle:
-...
+## Подключение библиотеки
+
+1. Добавьте в app build.gradle:
+
+```java
 dependencies {
-   releaseCompile('uz.paycom:payment:1.0.3:release@aar')
-   //Для тестирования интеграции на тестовой площадке
-   //debugCompile('uz.paycom:payment:1.0.3:debug@aar') 
+   compile 'uz.paycom:payment:1.0.4'
 }
-...
+```
 
-3. Далее, вызов на оплату:
-...
+2. Встройте в приложение вызов на оплату:
+```java
 @Override public void onClick(View v) {
-        Intent intent = new Intent(YourActivity.this, PaymentActivity.class);
-        intent.putExtra(EXTRA_ID, xAuth); //ID мерчанта
-        final Double sum = Double.valueOf(activityTestSum.getText().toString());
-        intent.putExtra(EXTRA_AMOUNT, sum); //Сумма оплаты
-        intent.putExtra(EXTRA_SAVE, activityTestMultiple.isChecked()); //Сохранить для многократной оплаты?
-        intent.putExtra(EXTRA_LANG, "RU"); //Язык "RU" или "UZ"
-        startActivityForResult(intent, 0);
+   Intent intent = new Intent(YourActivity.this, PaymentActivity.class);
+   intent.putExtra(EXTRA_ID, xAuth); //Ваш ID мерчанта
+   final Double sum = Double.valueOf(activityTestSum.getText().toString());
+   intent.putExtra(EXTRA_AMOUNT, sum); //Сумма оплаты
+   intent.putExtra(EXTRA_SAVE, activityTestMultiple.isChecked()); //Сохранить для многократной оплаты?
+   intent.putExtra(EXTRA_LANG, "RU"); //Язык "RU" или "UZ"
+   PaycomSandBox.setEnabled(true); //true для тестовой площадки, по умолчанию false
+   startActivityForResult(intent, 0);
 }
-...
+```
 
-4. Получаем результат:
-...
+## Обработка результата
+
+После вызова оплаты: покупатель вводит данные платежа, Paycom SDK — возвращает токен для совершения платежа. Токен передаётся в backend мобильного приложения. 
+
+**Пример**
+```java
 @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
@@ -50,8 +44,32 @@ dependencies {
       Log.d(TAG, "Payment canceled"); //Произошла отмена оплаты
     }
   }
-...
+```
 
-где, Result - {number - номер карты маскированный, expire - срок действия, token - токен необходимый для списания оплаты (передается на backend приложения), recurent - возможно ли произвести повторное списание, verify - прошла ли проверка на принадлежность карты владельцу по sms
+**Result** содержит поля:
 
-5. Готово. Побробности: http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-plastikovymi-kartami-klientskaya-chast
+- number — маскированный номер карты;
+
+- expire — срок действия карты; 
+
+- token — токен для совершения платежа. Токен передаётся в backend мобильного приложения;
+
+- recurrent — флаг, возможность повторного списания;
+
+- verify — верификация карты по смс.
+
+## Режим "песочницы"
+
+* СМС код всегда "666666" в режиме песочницы
+* Тестовые карты:
+   * 5555 5555 5555 5555      &nbsp; 04/20
+   * 4444 4444 4444 4444      &nbsp; 04/20
+   * 3333 3333 3333 3333      &nbsp; 04/20 
+   * 2222 2222 2222 2222      &nbsp; 04/20 &nbsp; Не подключенно СМС информирование
+   * 1111 1111 1111 1111      &nbsp; 04/15 &nbsp; Срок дейтвия истек
+   * 8600 0000 0000 0001      &nbsp; 04/20 &nbsp; Карта заблокированнна
+   * 8600 0000 0000 0002      &nbsp; 04/20
+
+## Пользовательский интерфейс
+
+![Screenshot](docs/img.png?raw=true "Screens")
