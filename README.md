@@ -2,7 +2,9 @@
 
 Чтобы интегрировать Paycom с мобильным приложением, подключите к мобильному приложению [библиотеку Paycom Android SDK](https://github.com/PaycomUZ/AndroidSDK) и реализуйте методы работы с [пластиковыми картами](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-plastikovymi-kartami-servernaya-chast) и [чеком](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-chekom-servernaya-chast) из [Subscribe API](http://paycom.uz/api/#subscribe-api).
 
-В библиотеке Paycom Android SDK — реализован пользовательский интерфейс и все [методы работы с пластиковыми картами для клиентской части](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-plastikovymi-kartami-klientskaya-chast). 
+В библиотеке Paycom Android SDK — реализован пользовательский интерфейс и все [методы работы с пластиковыми картами для клиентской части](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-plastikovymi-kartami-klientskaya-chast).
+
+Последнюю версию библиотеки можно узнать [здесь](https://bintray.com/paycom/general/android-sdk)
 
 ## Подключение библиотеки
 
@@ -10,7 +12,7 @@
 
 ```java
 dependencies {
-   compile 'uz.paycom:payment:1.0.5'
+   compile 'uz.paycom:payment:$last version' 
 }
 ```
 
