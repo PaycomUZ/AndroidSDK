@@ -32,7 +32,7 @@ public class JsonRpcRequest {
   private String callApi(JSONObject jsonObject) {
     try {
       String urlApi = PaycomSandBox.isSandBox() ? "http://checkout.test.paycom.uz/api"
-          : "http://checkout.paycom.uz/api";
+          : "https://checkout.paycom.uz/api";
       URL url = new URL(urlApi);
       urlConnection = (HttpURLConnection) url.openConnection();
       urlConnection.setRequestMethod("POST");
