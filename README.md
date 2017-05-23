@@ -4,7 +4,7 @@
 
 В библиотеке Paycom Android SDK — реализован пользовательский интерфейс и все [методы работы с пластиковыми картами для клиентской части](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-plastikovymi-kartami-klientskaya-chast).
 
-Последнюю версию библиотеки можно узнать [здесь](https://bintray.com/paycom/general/android-sdk)
+[Последняя версия библиотеки на bintray](https://bintray.com/paycom/general/android-sdk)
 
 ## Подключение библиотеки
 
