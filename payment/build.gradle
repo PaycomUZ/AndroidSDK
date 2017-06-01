@@ -6,7 +6,7 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 ext {
-  ver = "1.0.5.1"
+  ver = "1.0.5.2"
 }
 
 android {
@@ -22,14 +22,9 @@ android {
       debuggable true
     }
     release {
-      minifyEnabled false
-      consumerProguardFiles 'proguard-payment.pro'
+      minifyEnabled true
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-payment.pro'
     }
-  }
-  publishNonDefault false
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_7
-    targetCompatibility JavaVersion.VERSION_1_7
   }
 }
 
