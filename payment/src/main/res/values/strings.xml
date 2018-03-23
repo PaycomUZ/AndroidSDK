@@ -16,5 +16,5 @@
     <string name="dateExpireHint">мм/гг</string>
     <string name="paycomTitle">Paycom Оплата</string>
     <string name="invalidCard">Неправильный номер карты</string>
-    <string name="card_balance_currency">сум</string>
+    <string name="card_balance_currency">%s сум</string>
 </resources>

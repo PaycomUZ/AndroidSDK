@@ -57,20 +57,20 @@ public class PaymentActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.paycom_payment_main);
 
-    activityMainErrorLayout = (RelativeLayout) findViewById(R.id.activity_main_errorLayout);
-    activityMainErrorLayoutError = (TextView) findViewById(R.id.activity_main_errorLayout_error);
-    activityMainErrorMessage = (TextView) findViewById(R.id.activity_main_errorMessage);
-    activityMainClose = (TextView) findViewById(R.id.activity_main_close);
-    activityMainPaymentSumTitle = (TextView) findViewById(R.id.activity_main_paymentSumTitle);
-    activityMainPaymentSum = (TextView) findViewById(R.id.activity_main_paymentSum);
-    activityMainCardNumberTitle = (TextView) findViewById(R.id.activity_main_cardNumberTitle);
-    activityMainCardNumber = (EditText) findViewById(R.id.activity_main_cardNumber);
-    activityMainUzcardOnlyText = (TextView) findViewById(R.id.activity_main_uzcardOnlyText);
-    activityMainDateExpireTitle = (TextView) findViewById(R.id.activity_main_dateExpireTitle);
-    activityMainDateExpire = (EditText) findViewById(R.id.activity_main_dateExpire);
-    activityMainCardRemember = (CheckBox) findViewById(R.id.activity_main_cardRemember);
-    activityMainContinue = (Button) findViewById(R.id.activity_main_continue);
-    activityMainProgress = (ProgressBar) findViewById(R.id.activity_main_progress);
+    activityMainErrorLayout = findViewById(R.id.activity_main_errorLayout);
+    activityMainErrorLayoutError = findViewById(R.id.activity_main_errorLayout_error);
+    activityMainErrorMessage = findViewById(R.id.activity_main_errorMessage);
+    activityMainClose = findViewById(R.id.activity_main_close);
+    activityMainPaymentSumTitle = findViewById(R.id.activity_main_paymentSumTitle);
+    activityMainPaymentSum = findViewById(R.id.activity_main_paymentSum);
+    activityMainCardNumberTitle = findViewById(R.id.activity_main_cardNumberTitle);
+    activityMainCardNumber = findViewById(R.id.activity_main_cardNumber);
+    activityMainUzcardOnlyText = findViewById(R.id.activity_main_uzcardOnlyText);
+    activityMainDateExpireTitle = findViewById(R.id.activity_main_dateExpireTitle);
+    activityMainDateExpire = findViewById(R.id.activity_main_dateExpire);
+    activityMainCardRemember = findViewById(R.id.activity_main_cardRemember);
+    activityMainContinue = findViewById(R.id.activity_main_continue);
+    activityMainProgress = findViewById(R.id.activity_main_progress);
 
     initUI();
     activityMainCardNumber.addTextChangedListener(new CardNumberFormat(activityMainContinue));
@@ -126,8 +126,7 @@ public class PaymentActivity extends AppCompatActivity {
     amount = Math.floor(amount * 100.0) / 100.0;
     save = getIntent().getBooleanExtra(EXTRA_SAVE, false);
     if (amount <= 0) {setResult(RESULT_CANCELED); finish();}
-    activityMainPaymentSum.setText(formatMoney(amount, true) +
-        " " + resources.getString(R.string.card_balance_currency));
+    activityMainPaymentSum.setText(resources.getString(R.string.card_balance_currency, formatMoney(amount, true)));
     activityMainCardRemember.setVisibility(save ? View.VISIBLE : View.GONE);
   }
 
