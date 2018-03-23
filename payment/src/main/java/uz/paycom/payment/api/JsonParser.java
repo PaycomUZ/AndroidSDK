@@ -99,12 +99,11 @@ public class JsonParser {
       JSONObject jsonObject = new JSONObject(json);
       JSONObject resultObject = jsonObject.getJSONObject("result");
       JSONObject card = resultObject.getJSONObject("card");
-      Result result = new Result(card.getString("number")
+      return new Result(card.getString("number")
           ,card.getString("expire")
           ,card.getString("token")
           ,card.getBoolean("recurrent")
           ,card.getBoolean("verify"));
-      return result;
     } catch (Exception e) {
         Log.d(TAG, e.toString());
         return null;
@@ -115,10 +114,9 @@ public class JsonParser {
     try {
       JSONObject jsonObject = new JSONObject(json);
       JSONObject result = jsonObject.getJSONObject("result");
-      Confirm confirm = new Confirm(result.getBoolean("sent")
+      return new Confirm(result.getBoolean("sent")
               ,result.getString("phone")
               ,result.getInt("wait"));
-      return confirm;
     } catch (Exception e) {
       Log.d(TAG, e.toString());
       return null;
