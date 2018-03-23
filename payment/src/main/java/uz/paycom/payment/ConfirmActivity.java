@@ -52,18 +52,18 @@ public class ConfirmActivity extends AppCompatActivity {
 
     getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
-    activityConfirmErrorLayout = (RelativeLayout) findViewById(R.id.activity_confirm_errorLayout);
-    activityConfirmError = (TextView) findViewById(R.id.activity_confirm_error);
-    activityConfirmErrorMessage = (TextView) findViewById(R.id.activity_confirm_errorMessage);
-    activityConfirmClose = (TextView) findViewById(R.id.activity_confirm_close);
-    activityConfirmProgress = (ProgressBar) findViewById(R.id.activity_confirm_progress);
-    activityConfirmTimer = (TextView) findViewById(R.id.activity_confirm_timer);
-    activityRepeatImage = (ImageView) findViewById(R.id.activity_repeat_image);
-    activityConfirmCodeConfirmTitle = (TextView) findViewById(R.id.activity_confirm_codeConfirmTitle);
-    activityConfirmCodeConfirm = (EditText) findViewById(R.id.activity_confirm_codeConfirm);
-    activityConfirmPhoneNumberTitle = (TextView) findViewById(R.id.activity_confirm_phoneNumberTitle);
-    activityConfirmPhoneNumber = (TextView) findViewById(R.id.activity_confirm_phoneNumber);
-    activityConfirmButton = (Button) findViewById(R.id.activity_confirm_button);
+    activityConfirmErrorLayout = findViewById(R.id.activity_confirm_errorLayout);
+    activityConfirmError = findViewById(R.id.activity_confirm_error);
+    activityConfirmErrorMessage = findViewById(R.id.activity_confirm_errorMessage);
+    activityConfirmClose = findViewById(R.id.activity_confirm_close);
+    activityConfirmProgress = findViewById(R.id.activity_confirm_progress);
+    activityConfirmTimer = findViewById(R.id.activity_confirm_timer);
+    activityRepeatImage = findViewById(R.id.activity_repeat_image);
+    activityConfirmCodeConfirmTitle =  findViewById(R.id.activity_confirm_codeConfirmTitle);
+    activityConfirmCodeConfirm = findViewById(R.id.activity_confirm_codeConfirm);
+    activityConfirmPhoneNumberTitle = findViewById(R.id.activity_confirm_phoneNumberTitle);
+    activityConfirmPhoneNumber = findViewById(R.id.activity_confirm_phoneNumber);
+    activityConfirmButton = findViewById(R.id.activity_confirm_button);
 
     Context context = LocaleHelper.onAttach(this, getIntent().getStringExtra(EXTRA_LANG));
     Resources resources = context.getResources();

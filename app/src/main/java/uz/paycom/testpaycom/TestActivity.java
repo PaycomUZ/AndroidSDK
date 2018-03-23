@@ -32,9 +32,9 @@ public class TestActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_test);
 
-    activityTestSum = (EditText) findViewById(R.id.activity_test_sum);
-    activityTestMultiple = (CheckBox) findViewById(R.id.activity_test_multiple);
-    activityTestPayment = (Button) findViewById(R.id.activity_test_payment);
+    activityTestSum = findViewById(R.id.activity_test_sum);
+    activityTestMultiple =  findViewById(R.id.activity_test_multiple);
+    activityTestPayment = findViewById(R.id.activity_test_payment);
 
     activityTestPayment.setOnClickListener(new View.OnClickListener() {
       @Override
