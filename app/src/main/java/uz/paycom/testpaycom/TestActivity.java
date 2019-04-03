@@ -22,31 +22,26 @@ import static uz.paycom.payment.PaymentActivity.EXTRA_SAVE;
 public class TestActivity extends AppCompatActivity {
 
   private static final String TAG = "TestActivity";
-  private static final String xAuth = "54e1e3f527e073c0f62eeddf";
-
-  private EditText activityTestSum;
-  private CheckBox activityTestMultiple;
-  private Button activityTestPayment;
+  private static final String xAuth = "5a3bb098d9ffa237dc027290";
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_test);
 
-    activityTestSum = (EditText) findViewById(R.id.activity_test_sum);
-    activityTestMultiple = (CheckBox) findViewById(R.id.activity_test_multiple);
-    activityTestPayment = (Button) findViewById(R.id.activity_test_payment);
+    final EditText activityTestSum = findViewById(R.id.activity_test_sum);
+    final CheckBox activityTestMultiple = findViewById(R.id.activity_test_multiple);
+    final Button activityTestPayment = findViewById(R.id.activity_test_payment);
 
     activityTestPayment.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         Intent intent = new Intent(TestActivity.this, PaymentActivity.class);
         intent.putExtra(EXTRA_ID, xAuth);
-        //Если чисел после запятой больше 2-ух, то они будут отброшены
         final Double sum = Double.valueOf(activityTestSum.getText().toString());
         intent.putExtra(EXTRA_AMOUNT, sum);
         intent.putExtra(EXTRA_SAVE, activityTestMultiple.isChecked());
         intent.putExtra(EXTRA_LANG, "RU");
-        PaycomSandBox.setEnabled(true);
+        PaycomSandBox.setEnabled(false);
         startActivityForResult(intent, 0);
       }
     });

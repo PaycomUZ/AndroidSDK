@@ -2,6 +2,9 @@ package uz.paycom.payment.api;
 
 import android.util.Log;
 
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import javax.net.ssl.HttpsURLConnection;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,7 +26,7 @@ public class JsonRpcRequest {
   public final static String cardsCreateVerifyMethod = "cards.verify";
 
   private final String xAuth;
-  private HttpURLConnection urlConnection;
+  private HttpsURLConnection urlConnection;
 
   public JsonRpcRequest(String xAuth) {
     this.xAuth = xAuth;
@@ -33,8 +36,16 @@ public class JsonRpcRequest {
     try {
       String urlApi = PaycomSandBox.isSandBox() ? "https://checkout.test.paycom.uz/api"
           : "https://checkout.paycom.uz/api";
+      Log.d(TAG, urlApi);
       URL url = new URL(urlApi);
-      urlConnection = (HttpURLConnection) url.openConnection();
+      urlConnection = (HttpsURLConnection) url.openConnection();
+
+      try {
+        urlConnection.setSSLSocketFactory(new TLSSocketFactory());
+      } catch (KeyManagementException | NoSuchAlgorithmException e) {
+        Log.d(TAG, e.toString());
+      }
+
       urlConnection.setRequestMethod("POST");
       urlConnection.addRequestProperty("X-Auth", xAuth);
       urlConnection.setDoInput(true);
@@ -46,6 +57,7 @@ public class JsonRpcRequest {
       writer.write(jsonObject.toString());
       writer.flush();
 
+      Log.d(TAG, jsonObject.toString());
       int responseCode = urlConnection.getResponseCode();
 
       String line = "";
@@ -74,6 +86,7 @@ public class JsonRpcRequest {
 
   public String callApiMethod(JSONObject jsonObject, String method) {
     try {
+      Log.d(TAG, method);
       jsonObject.accumulate("method", method);
     } catch (JSONException e) {
         Log.d(TAG, e.toString());

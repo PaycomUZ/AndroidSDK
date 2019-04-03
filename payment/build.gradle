@@ -6,15 +6,16 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 ext {
-  ver = "1.0.5.3"
+  code = 1
+  ver  = "1.0.5.4"
 }
 
 android {
   defaultConfig {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
-    minSdkVersion 14
-    versionCode 1
+    compileSdkVersion project.ext.compileSdkVersion
+    buildToolsVersion project.ext.buildToolsVersion
+    minSdkVersion project.ext.minSdkVersion
+    versionCode code
     versionName ver
   }
   buildTypes {
@@ -29,8 +30,7 @@ android {
 }
 
 dependencies {
-  compile fileTree(dir: 'libs', include: ['*.jar'])
-  compile 'com.android.support:appcompat-v7:+'
+  implementation "com.android.support:appcompat-v7:$supportVersion"
 }
 
 group = 'uz.paycom'

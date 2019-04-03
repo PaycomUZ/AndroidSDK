@@ -24,21 +24,23 @@ import uz.paycom.payment.utils.PaycomSandBox;
 
 public class PaymentActivity extends AppCompatActivity {
 
+  public static String id;
+
   public static final String EXTRA_ID = "ID";
   public static final String EXTRA_LANG = "LANG";
   public static final String EXTRA_SAVE = "SAVE";
   public static final String EXTRA_AMOUNT = "AMOUNT";
   public static final String EXTRA_RESULT = "RESULT";
 
-  private RelativeLayout activityMainErrorLayout;
-  private TextView activityMainErrorLayoutError;
-  private TextView activityMainErrorMessage;
   private TextView activityMainClose;
-  private TextView activityMainPaymentSumTitle;
   private TextView activityMainPaymentSum;
+  private TextView activityMainErrorMessage;
+  private TextView activityMainPaymentSumTitle;
+  private TextView activityMainErrorLayoutError;
   private TextView activityMainCardNumberTitle;
   private TextView activityMainUzcardOnlyText;
   private TextView activityMainDateExpireTitle;
+  private RelativeLayout activityMainErrorLayout;
 
   private DecimalFormat decimalFormat;
 
@@ -48,7 +50,6 @@ public class PaymentActivity extends AppCompatActivity {
   public Button activityMainContinue;
   public ProgressBar activityMainProgress;
 
-  public static String id;
   public String lang;
   public Double amount;
   public boolean save;
@@ -57,24 +58,26 @@ public class PaymentActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.paycom_payment_main);
 
-    activityMainErrorLayout = (RelativeLayout) findViewById(R.id.activity_main_errorLayout);
-    activityMainErrorLayoutError = (TextView) findViewById(R.id.activity_main_errorLayout_error);
-    activityMainErrorMessage = (TextView) findViewById(R.id.activity_main_errorMessage);
-    activityMainClose = (TextView) findViewById(R.id.activity_main_close);
-    activityMainPaymentSumTitle = (TextView) findViewById(R.id.activity_main_paymentSumTitle);
-    activityMainPaymentSum = (TextView) findViewById(R.id.activity_main_paymentSum);
-    activityMainCardNumberTitle = (TextView) findViewById(R.id.activity_main_cardNumberTitle);
-    activityMainCardNumber = (EditText) findViewById(R.id.activity_main_cardNumber);
-    activityMainUzcardOnlyText = (TextView) findViewById(R.id.activity_main_uzcardOnlyText);
-    activityMainDateExpireTitle = (TextView) findViewById(R.id.activity_main_dateExpireTitle);
-    activityMainDateExpire = (EditText) findViewById(R.id.activity_main_dateExpire);
-    activityMainCardRemember = (CheckBox) findViewById(R.id.activity_main_cardRemember);
-    activityMainContinue = (Button) findViewById(R.id.activity_main_continue);
-    activityMainProgress = (ProgressBar) findViewById(R.id.activity_main_progress);
+    activityMainClose = findViewById(R.id.activity_main_close);
+    activityMainContinue = findViewById(R.id.activity_main_continue);
+    activityMainProgress = findViewById(R.id.activity_main_progress);
+    activityMainErrorLayout = findViewById(R.id.activity_main_errorLayout);
+    activityMainCardNumber = findViewById(R.id.activity_main_cardNumber);
+    activityMainPaymentSum = findViewById(R.id.activity_main_paymentSum);
+    activityMainDateExpire = findViewById(R.id.activity_main_dateExpire);
+    activityMainErrorMessage = findViewById(R.id.activity_main_errorMessage);
+    activityMainCardRemember = findViewById(R.id.activity_main_cardRemember);
+    activityMainUzcardOnlyText = findViewById(R.id.activity_main_uzcardOnlyText);
+    activityMainCardNumberTitle = findViewById(R.id.activity_main_cardNumberTitle);
+    activityMainPaymentSumTitle = findViewById(R.id.activity_main_paymentSumTitle);
+    activityMainDateExpireTitle = findViewById(R.id.activity_main_dateExpireTitle);
+    activityMainErrorLayoutError = findViewById(R.id.activity_main_errorLayout_error);
 
     initUI();
-    activityMainCardNumber.addTextChangedListener(new CardNumberFormat(activityMainContinue));
-    activityMainDateExpire.addTextChangedListener(new DateExpireFormat(activityMainContinue));
+    activityMainCardNumber.addTextChangedListener(new
+            CardNumberFormat(activityMainContinue, activityMainDateExpire));
+    activityMainDateExpire.addTextChangedListener(new
+            DateExpireFormat(activityMainContinue, activityMainCardNumber));
 
     activityMainContinue.setEnabled(false);
     activityMainContinue.setAlpha(.3f);
@@ -126,12 +129,11 @@ public class PaymentActivity extends AppCompatActivity {
     amount = Math.floor(amount * 100.0) / 100.0;
     save = getIntent().getBooleanExtra(EXTRA_SAVE, false);
     if (amount <= 0) {setResult(RESULT_CANCELED); finish();}
-    activityMainPaymentSum.setText(formatMoney(amount, true) +
-        " " + resources.getString(R.string.card_balance_currency));
+    activityMainPaymentSum.setText(formatMoney(amount, true) + " " + resources.getString(R.string.card_balance_currency));
     activityMainCardRemember.setVisibility(save ? View.VISIBLE : View.GONE);
   }
 
-  public boolean isValid(String code) {
+  public static boolean isValid(String code) {
     // Valid only for even code length
     int sum = 0;
 
@@ -170,7 +172,7 @@ public class PaymentActivity extends AppCompatActivity {
     return decimalFormat.format(value);
   }
 
-  public boolean isOnline(String code) {
+  public static boolean isOnline(String code) {
     return code.substring(0, 4).equals("8600");
   }
 

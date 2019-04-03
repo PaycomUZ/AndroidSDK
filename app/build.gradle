@@ -7,8 +7,8 @@ android {
     applicationId "uz.paycom.testpaycom"
     minSdkVersion project.ext.minSdkVersion
     targetSdkVersion project.ext.targetSdkVersion
-    versionCode 1
-    versionName "1.0"
+    versionCode project.ext.versionCode
+    versionName project.ext.versionName
   }
   buildTypes {
     debug {
@@ -22,7 +22,6 @@ android {
 }
 
 dependencies {
-  compile fileTree(dir: 'libs', include: ['*.jar'])
-
-  compile project(":payment");
+  implementation "com.android.support:appcompat-v7:$supportVersion"
+  implementation project(":payment")
 }

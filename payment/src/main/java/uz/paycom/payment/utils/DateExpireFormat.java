@@ -3,13 +3,16 @@ package uz.paycom.payment.utils;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 
 public class DateExpireFormat extends ViewDisable implements TextWatcher {
 
   private boolean lock;
+  private EditText editText;
 
-  public DateExpireFormat(View view) {
+  public DateExpireFormat(View view, EditText editText) {
     super(view);
+    this.editText = editText;
   }
 
   @Override
@@ -22,7 +25,8 @@ public class DateExpireFormat extends ViewDisable implements TextWatcher {
 
   @Override
   public void afterTextChanged(Editable s) {
-    if (s.length() > 4) { enableView(); } else { disableView(); }
+    int cardNumberLength = editText.getText().toString().length();
+    if (s.length() > 4 && cardNumberLength > 18) { enableView(); } else { disableView(); }
     if (lock || s.length() > 4) {
       return;
     }
