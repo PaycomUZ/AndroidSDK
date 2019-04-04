@@ -25,7 +25,7 @@ dependencies {
    intent.putExtra(EXTRA_AMOUNT, sum); //Сумма оплаты
    intent.putExtra(EXTRA_SAVE, activityTestMultiple.isChecked()); //Сохранить для многократной оплаты?
    intent.putExtra(EXTRA_LANG, "RU"); //Язык "RU" или "UZ"
-   PaycomSandBox.setEnabled(true); //true для тестовой площадки, по умолчанию false
+   PaycomSandBox.setEnabled(false); //true для тестовой площадки
    startActivityForResult(intent, 0);
 }
 ```
