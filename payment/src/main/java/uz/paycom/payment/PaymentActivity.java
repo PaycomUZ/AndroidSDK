@@ -61,10 +61,10 @@ public class PaymentActivity extends AppCompatActivity {
     activityMainClose = findViewById(R.id.activity_main_close);
     activityMainContinue = findViewById(R.id.activity_main_continue);
     activityMainProgress = findViewById(R.id.activity_main_progress);
-    activityMainErrorLayout = findViewById(R.id.activity_main_errorLayout);
     activityMainCardNumber = findViewById(R.id.activity_main_cardNumber);
     activityMainPaymentSum = findViewById(R.id.activity_main_paymentSum);
     activityMainDateExpire = findViewById(R.id.activity_main_dateExpire);
+    activityMainErrorLayout = findViewById(R.id.activity_main_errorLayout);
     activityMainErrorMessage = findViewById(R.id.activity_main_errorMessage);
     activityMainCardRemember = findViewById(R.id.activity_main_cardRemember);
     activityMainUzcardOnlyText = findViewById(R.id.activity_main_uzcardOnlyText);

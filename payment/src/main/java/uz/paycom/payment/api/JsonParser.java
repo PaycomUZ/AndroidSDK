@@ -1,11 +1,9 @@
 package uz.paycom.payment.api;
 
-import android.util.Log;
-
 import org.json.JSONObject;
-
 import uz.paycom.payment.model.Confirm;
 import uz.paycom.payment.model.Result;
+import uz.paycom.payment.utils.Logger;
 
 /**
  * Parse json api objects
@@ -27,7 +25,7 @@ public class JsonParser {
       params.accumulate("save", save);
       root.accumulate("params", params);
     } catch (Exception e) {
-        Log.d(TAG, e.toString());
+        Logger.d(TAG, e.toString());
     }
 
     return root;
@@ -41,7 +39,7 @@ public class JsonParser {
       params.accumulate("token", token);
       root.accumulate("params", params);
     } catch (Exception e) {
-        Log.d(TAG, e.toString());
+        Logger.d(TAG, e.toString());
     }
 
     return root;
@@ -54,7 +52,7 @@ public class JsonParser {
           .getJSONObject("card")
           .getString("token");
     } catch (Exception e) {
-        Log.d(TAG, e.toString());
+        Logger.d(TAG, e.toString());
         return null;
     }
   }
@@ -63,7 +61,7 @@ public class JsonParser {
     try {
       return jsonObject.getString("token");
     } catch (Exception e) {
-        Log.d(TAG, e.toString());
+        Logger.d(TAG, e.toString());
         return null;
     }
   }
@@ -77,7 +75,7 @@ public class JsonParser {
       params.accumulate("code", code);
       root.accumulate("params", params);
     } catch (Exception e) {
-        Log.d(TAG, e.toString());
+        Logger.d(TAG, e.toString());
     }
 
     return root;
@@ -89,7 +87,7 @@ public class JsonParser {
       return jsonObject.getJSONObject("error")
           .getString("message");
     } catch (Exception e) {
-        Log.d(TAG, e.toString());
+        Logger.d(TAG, e.toString());
         return null;
     }
   }
@@ -99,14 +97,13 @@ public class JsonParser {
       JSONObject jsonObject = new JSONObject(json);
       JSONObject resultObject = jsonObject.getJSONObject("result");
       JSONObject card = resultObject.getJSONObject("card");
-      Result result = new Result(card.getString("number")
+      return new Result(card.getString("number")
           ,card.getString("expire")
           ,card.getString("token")
           ,card.getBoolean("recurrent")
           ,card.getBoolean("verify"));
-      return result;
     } catch (Exception e) {
-        Log.d(TAG, e.toString());
+        Logger.d(TAG, e.toString());
         return null;
     }
   }
@@ -115,12 +112,11 @@ public class JsonParser {
     try {
       JSONObject jsonObject = new JSONObject(json);
       JSONObject result = jsonObject.getJSONObject("result");
-      Confirm confirm = new Confirm(result.getBoolean("sent")
+      return new Confirm(result.getBoolean("sent")
               ,result.getString("phone")
               ,result.getInt("wait"));
-      return confirm;
     } catch (Exception e) {
-      Log.d(TAG, e.toString());
+      Logger.d(TAG, e.toString());
       return null;
     }
   }

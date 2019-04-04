@@ -10,18 +10,27 @@ android {
     versionCode project.ext.versionCode
     versionName project.ext.versionName
   }
+  signingConfigs {
+    release {
+      keyAlias 'androiddebugkey'
+      keyPassword 'android'
+      storeFile file('debug.keystore')
+      storePassword 'android'
+    }
+  }
   buildTypes {
     debug {
       debuggable true
     }
     release {
-      minifyEnabled false
+      minifyEnabled true
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      signingConfig signingConfigs.release
     }
   }
 }
 
 dependencies {
   implementation "com.android.support:appcompat-v7:$supportVersion"
-  implementation project(":payment")
+  implementation project(':payment')
 }

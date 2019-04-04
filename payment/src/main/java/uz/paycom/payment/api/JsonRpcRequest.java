@@ -1,7 +1,5 @@
 package uz.paycom.payment.api;
 
-import android.util.Log;
-
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import javax.net.ssl.HttpsURLConnection;
@@ -15,6 +13,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import uz.paycom.payment.utils.Logger;
 import uz.paycom.payment.utils.PaycomSandBox;
 
 public class JsonRpcRequest {
@@ -36,14 +35,14 @@ public class JsonRpcRequest {
     try {
       String urlApi = PaycomSandBox.isSandBox() ? "https://checkout.test.paycom.uz/api"
           : "https://checkout.paycom.uz/api";
-      Log.d(TAG, urlApi);
+      Logger.d(TAG, urlApi);
       URL url = new URL(urlApi);
       urlConnection = (HttpsURLConnection) url.openConnection();
 
       try {
         urlConnection.setSSLSocketFactory(new TLSSocketFactory());
       } catch (KeyManagementException | NoSuchAlgorithmException e) {
-        Log.d(TAG, e.toString());
+        Logger.d(TAG, e.toString());
       }
 
       urlConnection.setRequestMethod("POST");
@@ -57,7 +56,7 @@ public class JsonRpcRequest {
       writer.write(jsonObject.toString());
       writer.flush();
 
-      Log.d(TAG, jsonObject.toString());
+      Logger.d(TAG, jsonObject.toString());
       int responseCode = urlConnection.getResponseCode();
 
       String line = "";
@@ -66,7 +65,7 @@ public class JsonRpcRequest {
         BufferedReader br=new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
         while ((line = br.readLine()) != null) {
           response.append(line);
-          Log.d(TAG, line);
+          Logger.d(TAG, line);
         }
         br.close();
         return response.toString();
@@ -75,7 +74,7 @@ public class JsonRpcRequest {
       }
 
     } catch (IOException e) {
-        Log.d(TAG, e.toString());
+        Logger.d(TAG, e.toString());
         return null;
     } finally {
         if (urlConnection != null) {
@@ -86,12 +85,11 @@ public class JsonRpcRequest {
 
   public String callApiMethod(JSONObject jsonObject, String method) {
     try {
-      Log.d(TAG, method);
+      Logger.d(TAG, method);
       jsonObject.accumulate("method", method);
     } catch (JSONException e) {
-        Log.d(TAG, e.toString());
+        Logger.d(TAG, e.toString());
     }
     return callApi(jsonObject);
   }
-
 }

@@ -7,14 +7,15 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 
 ext {
   code = 1
-  ver  = "1.0.5.4"
+  ver  = "1.0.5.5"
 }
 
 android {
+  compileSdkVersion project.ext.compileSdkVersion
+  buildToolsVersion project.ext.buildToolsVersion
   defaultConfig {
-    compileSdkVersion project.ext.compileSdkVersion
-    buildToolsVersion project.ext.buildToolsVersion
     minSdkVersion project.ext.minSdkVersion
+    targetSdkVersion project.ext.targetSdkVersion
     versionCode code
     versionName ver
   }
