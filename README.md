@@ -1,4 +1,4 @@
-# Paycom Android SDK
+# Paycom Android SDK [![Download](https://api.bintray.com/packages/paycom/general/android-sdk/images/download.svg)](https://bintray.com/paycom/general/android-sdk/_latestVersion)
 
 Чтобы интегрировать Paycom с мобильным приложением, подключите к мобильному приложению [библиотеку Paycom Android SDK](https://github.com/PaycomUZ/AndroidSDK) и реализуйте [методы работы с пластиковыми картами](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-plastikovymi-kartami-servernaya-chast) и [чеком](http://paycom.uz/api/#subscribe-api-metody-dlya-raboty-s-chekom-servernaya-chast) из [Subscribe API](http://paycom.uz/api/#subscribe-api).
 
