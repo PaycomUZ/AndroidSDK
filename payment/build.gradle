@@ -26,7 +26,6 @@ android {
     release {
       minifyEnabled true
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-payment.pro'
-      consumerProguardFiles 'consumer-proguard-payment.pro'
     }
   }
 }
